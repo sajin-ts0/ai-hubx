@@ -6,7 +6,7 @@
     <meta name="description" content="AI HUBX — Free AI tools and demos. Try chat, image, code assistants and more.">
     <meta name="keywords" content="AI, tools, chatbot, image generator, code assistant, free ai">
     <title>AI HUBX — Free AI Tools</title>
-    <link rel="icon" href="ai-hubx-logo.svg">
+    <link rel="icon" href="aihubx/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -63,7 +63,6 @@
 
       @media (max-width:768px){ .hero .content{flex-direction:column} .brand h1{font-size:1.1rem} }
     </style>
-    <script src="https://pl28391397.effectivegatecpm.com/5f/2b/18/5f2b18f9e67be0d8c14db8a41d39dc98.js"></script>
   </head>
   <body>
     <header class="container header">
@@ -99,6 +98,7 @@
               <p class="small">Explore free Image Generator AI tools — no signup required for most.</p>
               <div style="margin-top:12px"><button class="btn" onclick="openTool('imageGen')">Explore Now</button></div>
             </div>
+            <div id="banner-ad" style="margin-top:20px;display:flex;justify-content:center;"></div>
           </div>
         </div>
       </section>
@@ -161,6 +161,17 @@
     <script>
       document.getElementById('year').textContent = new Date().getFullYear();
 
+      // Load ads script only once when needed
+      let adsLoaded = false;
+      function loadAdsScript(){
+        if(!adsLoaded){
+          const script = document.createElement('script');
+          script.src = 'https://pl28391397.effectivegatecpm.com/5f/2b/18/5f2b18f9e67be0d8c14db8a41d39dc98.js';
+          document.head.appendChild(script);
+          adsLoaded = true;
+        }
+      }
+
       const aiTools = {
         imageGen: [
           { name: 'Stable Diffusion (Hugging Face)', desc: 'Free web UI for image generation', url: 'https://huggingface.co/spaces/stabilityai/stable-diffusion' },
@@ -221,8 +232,21 @@
       }
 
       document.getElementById('closeTool').addEventListener('click', ()=>document.getElementById('toolModal').classList.remove('open'));
-      document.getElementById('openTools').addEventListener('click', ()=>{ openTool('imageGen'); });
+      document.getElementById('openTools').addEventListener('click', ()=>{ loadAdsScript(); openTool('imageGen'); });
       document.getElementById('openContact').addEventListener('click', ()=>document.getElementById('contactModal').classList.add('open'));
+      
+      // Load banner ad on page load
+      atOptions = {
+        'key' : 'c6acade003d269ede08fe9010be1c56b',
+        'format' : 'iframe',
+        'height' : 300,
+        'width' : 160,
+        'params' : {}
+      };
+      const bannerScript = document.createElement('script');
+      bannerScript.src = 'https://www.highperformanceformat.com/c6acade003d269ede08fe9010be1c56b/invoke.js';
+      document.getElementById('banner-ad').appendChild(bannerScript);
+      
       document.getElementById('toolModal').addEventListener('click', (e)=>{ if(e.target === document.getElementById('toolModal')) document.getElementById('toolModal').classList.remove('open'); });
       document.getElementById('contactModal').addEventListener('click', (e)=>{ if(e.target === document.getElementById('contactModal')) document.getElementById('contactModal').classList.remove('open'); });
       document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape'){ document.getElementById('toolModal').classList.remove('open'); document.getElementById('contactModal').classList.remove('open'); } });
